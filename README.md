@@ -1,78 +1,43 @@
-# sales_sample
-Sales sample project
+# Tarea 3 - Ventas 2025 en varios CSV
 
-## 🚀 Guía de Inicio Rápido
+Marcos Rozas Castro y Roberto Grille Boga
 
-Sigue estes pasos para configurar e executar o proxecto no teu contorno local.
+En esta tarea los datos de 2025 vienen separados en 3 ficheros, uno por cuatrimestre. Hay que calcular el dinero total y el número de ventas del año (y de paso sacamos también el de cada cuatrimestre).
 
-### 1. Clonar o repositorio
+El cuatrimestre 2 tiene ventas repetidas, así que se quitan con `drop_duplicates` usando `id_venda`.
 
-```bash
-git clone https://github.com/bigdatawirtz/sales_sample.git
-cd sales_sample
-```
+## Resultados
 
----
+| Periodo | Importe (€) | Ventas |
+|---|---|---|
+| Cuatrimestre 1 | 376.953.315,26 | 1.150.000 |
+| Cuatrimestre 2 | 377.239.286,98 | 1.150.000 |
+| Cuatrimestre 3 | 377.546.079,10 | 1.150.000 |
+| **Total 2025** | **1.131.738.681,34** | **3.450.000** |
 
-### 2. Crear e activar o contorno virtual
+## Carpetas
 
-**En Linux:**
+- `datos/raw/` - los CSV
+- `src/tarefa3.py` - el script
+- `sql/tarefa3.sql` - el mismo cálculo en MySQL
+- `output/` - el CSV con los resultados y el informe en PDF
+
+## Cómo ejecutarlo
+
+Lo hicimos desde WSL (Ubuntu):
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-```
-
-
----
-
-### 3. Instalar as dependencias
-
-Co contorno virtual activo, instala os paquetes necesarios:
-
-```bash
-pip install --upgrade pip
 pip install -r requirements.txt
+
+python src/tarefa3.py
 ```
 
----
-
-### 4. Executar o código Python
-
-Para lanzar o script principal situado na carpeta `src`:
-
-```bash
-# Tarefa 1
-python src/tarefa1.py
-# Tarefa 2
-python src/tarefa2.py
-```
-
----
-
-### 5. Levantar a infraestrutura con base de datos usando Docker-Compose
-
-Para iniciar os servizos definidos en `docker-compose.yml`:
+Con MySQL en Docker:
 
 ```bash
 docker compose up -d
-```
-
-Para deter os servizos cando remates:
-
-```bash
+docker exec mysql-vendas sh -c 'mysql -uroot -pbigdata vendas < /sql/tarefa3.sql'
 docker compose down
-```
-
----
-
-### 6. Executar o código SQL dentro do contedor
-
-Para executar a carga de datos e consultas no servidor SQL
-
-
-```bash
-# Tarefa 1: carga os datos + executa consultas 
-docker exec mysql-vendas sh -c 'mysql -uroot -pbigdata vendas < /sql/tarefa1.sql'
-# Tarefa 2
-docker exec mysql-vendas sh -c 'mysql -uroot -pbigdata vendas < /sql/tarefa2.sql'
 ```

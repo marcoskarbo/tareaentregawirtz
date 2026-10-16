@@ -1,7 +1,7 @@
-# Tarefa 1 con MySQL
+# Tarefa 3 con MySQL
 # Arrancar:  docker compose up -d
 # Consola:   docker exec -it  mysql-vendas bash
-# Cliente mysql: mysql -uroot -pbigdata 
+# Cliente mysql: mysql -uroot -pbigdata
 # Parar:     docker compose down        (engade -v para borrar tamén os datos)
 services:
   mysql:
